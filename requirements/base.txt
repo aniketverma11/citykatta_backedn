@@ -21,3 +21,4 @@ drf-spectacular==0.27.2  # https://github.com/tfranzel/drf-spectacular
 psycopg2-binary
 djangorestframework-simplejwt
 django-import-export
+django-jazzmin
