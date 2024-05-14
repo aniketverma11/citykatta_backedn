@@ -1,4 +1,4 @@
-# DataHub Backend
+# CityKatta Backend
 
 This is data providers application
 
