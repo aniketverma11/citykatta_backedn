@@ -332,10 +332,8 @@ datahub_backend/media/
 
 .idea/
 
-datahub_backend/dataset/migrations
-datahub_backend/payment/migrations
-datahub_backend/users/migrations
-datahub_backend/vendor/migrations
-
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
 env
 .env
