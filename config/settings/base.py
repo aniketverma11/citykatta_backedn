@@ -317,7 +317,7 @@ SPECTACULAR_SETTINGS = {
     "TITLE": "DataHub Backend API",
     "DESCRIPTION": "Documentation of API endpoints of DataHub Backend",
     "VERSION": "1.0.0",
-    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],
     "SCHEMA_PATH_PREFIX": "/api/",
 }
 # Your stuff...
