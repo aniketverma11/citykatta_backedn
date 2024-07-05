@@ -95,8 +95,11 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    "datahub_backend.company.apps.CompanyConfig",
+    "datahub_backend.core.apps.CoreConfig",
     "datahub_backend.dataset.apps.DatasetConfig",
     "datahub_backend.payment.apps.PaymentConfig",
+    "datahub_backend.provider.apps.ProviderConfig",
     "datahub_backend.users.apps.UsersConfig",
     "datahub_backend.vendor.apps.VendorConfig",
 ]
