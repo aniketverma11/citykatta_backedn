@@ -8,7 +8,7 @@ class ProviderModel(models.Model):
     privacy_policy = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.owner
+        return self.owner.name
 
 
 class Review(models.Model):
