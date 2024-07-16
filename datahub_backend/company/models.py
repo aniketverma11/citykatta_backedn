@@ -6,7 +6,9 @@ from datahub_backend.core.models import Country
 class Company(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    headquater = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True, blank=True)
+    headquater = models.ForeignKey(
+        Country, on_delete=models.SET_NULL, null=True, blank=True
+    )
 
     def __str__(self):
         return self.name

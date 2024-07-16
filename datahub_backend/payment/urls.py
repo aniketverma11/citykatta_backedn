@@ -4,10 +4,10 @@ from django.urls import include, path
 
 router = routers.DefaultRouter()
 
-router.register(r'subscriptions', SubscriptionViewSet)
-router.register(r'transactions', TransactionViewSet)
+router.register(r"subscriptions", SubscriptionViewSet)
+router.register(r"transactions", TransactionViewSet)
 
 
 urlpatterns = [
-    path('payement/', include(router.urls)),
+    path("payement/", include(router.urls)),
 ]

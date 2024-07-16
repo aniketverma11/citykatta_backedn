@@ -22,8 +22,14 @@ urlpatterns = [
     # User management
     path("users/", include("datahub_backend.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    path("api/v1/", include(('datahub_backend.dataset.urls', 'dataset'), namespace="dataset")),
-    path('api/v1/', include(('datahub_backend.payment.urls', 'payment'), namespace="payment")),
+    path(
+        "api/v1/",
+        include(("datahub_backend.dataset.urls", "dataset"), namespace="dataset"),
+    ),
+    path(
+        "api/v1/",
+        include(("datahub_backend.payment.urls", "payment"), namespace="payment"),
+    ),
     # Your stuff: custom urls includes go here
     # ...
     # Media files
