@@ -14,12 +14,15 @@ class User(AbstractUser, UUIDMixin, MobileMixin):
     If adding fields that need to be filled at user signup,
     check forms.SignupForm and forms.SocialSignupForms accordingly.
     """
-    USER_TYPE_CHOICES = [('admin', 'Admin'), ('vendor', 'Vendor'), ('user', 'User')]
+
+    USER_TYPE_CHOICES = [("admin", "Admin"), ("vendor", "Vendor"), ("user", "User")]
     # First and last name do not cover name patterns around the globe
     name = models.CharField(_("Name of User"), blank=True, max_length=255)
     first_name = models.CharField(_("First Name of User"))  # type: ignore[assignment]
-    last_name = models.CharField(_("last Name of User")) # type: ignore[assignment]
-    user_type = models.CharField(_("User Type"), blank=True, max_length=255, choices=USER_TYPE_CHOICES)
+    last_name = models.CharField(_("last Name of User"))  # type: ignore[assignment]
+    user_type = models.CharField(
+        _("User Type"), blank=True, max_length=255, choices=USER_TYPE_CHOICES
+    )
     bio = models.TextField(blank=True)
     location = models.CharField(max_length=100, blank=True)
 
@@ -34,6 +37,8 @@ class User(AbstractUser, UUIDMixin, MobileMixin):
 
 
 class Favorite(models.Model):
-    dataset = models.ForeignKey(Dataset, on_delete=models.CASCADE, related_name='favorites')
+    dataset = models.ForeignKey(
+        Dataset, on_delete=models.CASCADE, related_name="favorites"
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     favorited_at = models.DateTimeField(auto_now_add=True)

@@ -36,9 +36,13 @@ class CreateUserProfileSerializer(serializers.Serializer):
 
     def validate(self, data):
         if User.objects.filter(mobile=data["phone_number"]).exists():
-            raise serializers.ValidationError("User with this mobile number  already exists")
+            raise serializers.ValidationError(
+                "User with this mobile number  already exists"
+            )
         if User.objects.filter(email=data["email"].lower()).exists():
-            raise serializers.ValidationError("User with this email {} already exists".format(data["email"]))
+            raise serializers.ValidationError(
+                "User with this email {} already exists".format(data["email"])
+            )
 
         return data
 
@@ -77,7 +81,9 @@ class UpdateUserProfileSerializer(serializers.Serializer):
 
     def validate(self, data):
         if User.objects.filter(mobile=data["phone_number"]).exists():
-            raise serializers.ValidationError("User with this mobile number  already exists")
+            raise serializers.ValidationError(
+                "User with this mobile number  already exists"
+            )
 
         return data
 
@@ -91,7 +97,9 @@ class LoginSerializer(serializers.Serializer):
             # Retrieve the user object based on the provided email
             user = User.objects.get(email=data["email"].lower())
         except:
-            raise serializers.ValidationError("User with this email {} not exists".format(data["email"]))
+            raise serializers.ValidationError(
+                "User with this email {} not exists".format(data["email"])
+            )
 
         # Check if the provided password matches the user's password
         if user.check_password(data["password"]):
@@ -126,7 +134,9 @@ class UpdatePasswordSerializer(serializers.Serializer):
         confirm_password = data.get("confirm_password")
 
         if new_password != confirm_password:
-            raise serializers.ValidationError("New password and confirm password do not match.")
+            raise serializers.ValidationError(
+                "New password and confirm password do not match."
+            )
 
         return data
 
@@ -146,7 +156,9 @@ class ForgotPasswordSerializer(serializers.Serializer):
             # Send the password reset email using SendInBlueEmail class
 
         except:
-            raise serializers.ValidationError("User with this email {} not exists".format(data["email"]))
+            raise serializers.ValidationError(
+                "User with this email {} not exists".format(data["email"])
+            )
 
         return data
 
@@ -175,7 +187,9 @@ class ForgotPasswordResetSerializer(serializers.Serializer):
             raise serializers.ValidationError("Invalid uuid")
         # Check if the new password and confirm password match
         if data["new_password"] != data["confirm_password"]:
-            raise serializers.ValidationError("password and confirm password are not same")
+            raise serializers.ValidationError(
+                "password and confirm password are not same"
+            )
         return data
 
     def create(self, validated_data):
@@ -193,7 +207,9 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ["username", "name", "url"]
 
-        extra_kwargs = {"url": {"view_name": "api:user-detail", "lookup_field": "username"}}
+        extra_kwargs = {
+            "url": {"view_name": "api:user-detail", "lookup_field": "username"}
+        }
 
 
 class UserSerializer(serializers.ModelSerializer[User]):

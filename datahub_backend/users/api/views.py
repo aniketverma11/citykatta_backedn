@@ -24,7 +24,6 @@ from .serializers import (
     MyTokenObtainPairSerializer,
     ForgotPasswordResetSerializer,
     ForgotPasswordSerializer,
-
 )
 from utils.response import cached_response
 
@@ -138,7 +137,9 @@ class ForgotPasswordViewSet(viewsets.ModelViewSet):
                 request=request,
                 status=status.HTTP_200_OK,
                 response_status="success",
-                message="We have sent you an email to your email address {}".format(serializer.data["email"]),
+                message="We have sent you an email to your email address {}".format(
+                    serializer.data["email"]
+                ),
                 data={},
                 meta={},
             )
