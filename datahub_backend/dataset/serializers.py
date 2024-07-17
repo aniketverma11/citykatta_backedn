@@ -5,7 +5,7 @@ from rest_framework import serializers
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = "__all__"
+        exclude = ("is_active", "is_deleted")
 
 
 class SubCategorySerializer(serializers.ModelSerializer):
@@ -13,7 +13,20 @@ class SubCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SubCategory
-        fields = "__all__"
+        exclude = ("is_active", "is_deleted")
+
+
+class CategoryListSerializer(serializers.ModelSerializer):
+    sub_category = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Category
+        exclude = ("is_active", "is_deleted")
+
+    def get_sub_category(self, obj):
+        return SubCategorySerializer(
+            SubCategory.objects.filter(category=obj), many=True
+        ).data
 
 
 class DatasetSerializer(serializers.ModelSerializer):

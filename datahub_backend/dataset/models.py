@@ -14,7 +14,12 @@ class Category(StatusMixin):
 
 class SubCategory(StatusMixin):
     name = models.CharField(max_length=255)
-    category = models.ForeignKey("dataset.Category", on_delete=models.CASCADE)
+    category = models.ForeignKey(
+        "dataset.Category",
+        on_delete=models.CASCADE,
+        related_name="subcategories",
+        related_query_name="subcategories",
+    )
 
     def __str__(self):
         return self.name
