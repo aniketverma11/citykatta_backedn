@@ -11,5 +11,7 @@ router.register(r"tags", views.TagViewSet)
 
 
 urlpatterns = [
+    path("category", views.CategoryListAPIView.as_view(), name="category"),
+    path("sub-category", views.SubCategoryListAPIView.as_view(), name="sub-category"),
     path("dataset/", include(router.urls)),
 ]

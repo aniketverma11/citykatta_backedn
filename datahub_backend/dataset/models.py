@@ -2,16 +2,17 @@ from django.db import models
 
 from datahub_backend.core.storages import generate_presigned_url
 from datahub_backend.core.utils import unique_filename
+from datahub_backend.utils.behaviours import StatusMixin
 
 
-class Category(models.Model):
+class Category(StatusMixin):
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
 
 
-class SubCategory(models.Model):
+class SubCategory(StatusMixin):
     name = models.CharField(max_length=255)
     category = models.ForeignKey("dataset.Category", on_delete=models.CASCADE)
 
@@ -19,7 +20,7 @@ class SubCategory(models.Model):
         return self.name
 
 
-class Dataset(models.Model):
+class Dataset(StatusMixin):
     name = models.CharField(max_length=255)
     provider = models.ForeignKey("provider.ProviderModel", on_delete=models.CASCADE)
     sub_category = models.ForeignKey("dataset.SubCategory", on_delete=models.DO_NOTHING)
