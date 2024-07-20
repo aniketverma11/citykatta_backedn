@@ -1,4 +1,4 @@
-from .models import Dataset, Tag, SubCategory, Category
+from .models import Dataset, Tag, SubCategory, Category, UseCase
 from rest_framework import serializers
 
 
@@ -29,9 +29,10 @@ class CategoryListSerializer(serializers.ModelSerializer):
         ).data
 
 
-class DatasetSerializer(serializers.ModelSerializer):
+class DatasetROSerializer(serializers.ModelSerializer):
     file = serializers.SerializerMethodField()
     sub_category = SubCategorySerializer(read_only=True)
+    use_cases = serializers.SerializerMethodField()
 
     class Meta:
         model = Dataset
@@ -40,8 +41,23 @@ class DatasetSerializer(serializers.ModelSerializer):
     def get_file(self, obj):
         return obj.get_file_url()
 
+    def get_use_cases(self, obj):
+        return obj.use_cases.split(",")
+
+
+class DatasetWOSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dataset
+        fields = "__all__"
+
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
+        fields = "__all__"
+
+
+class UseCaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UseCase
         fields = "__all__"

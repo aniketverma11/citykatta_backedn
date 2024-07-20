@@ -20,10 +20,10 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
-    path("users/", include("datahub_backend.users.urls", namespace="users")),
+    path("api/v1/users/", include("datahub_backend.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     path(
-        "api/v1/",
+        "api/v1/dataset/",
         include(("datahub_backend.dataset.urls", "dataset"), namespace="dataset"),
     ),
     path(

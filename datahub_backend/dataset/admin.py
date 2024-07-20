@@ -18,6 +18,11 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ("name", "category")
 
 
+class UseCaseAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+
+
+admin.site.register(UseCase, UseCaseAdmin)
 admin.site.register(Dataset, DatasetAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Category, CategoryAdmin)

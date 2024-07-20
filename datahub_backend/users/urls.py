@@ -19,15 +19,15 @@ from datahub_backend.users.api.views import (
 app_name = "users"
 urlpatterns = [
     path(
-        "login/",
+        "login",
         LoginViewSet.as_view(
             {
                 "post": "create",
             }
         ),
     ),
-    path("refresh/", RefreshTokenView.as_view(), name="token_refresh"),
-    path("logout/", TokenBlacklistView.as_view(), name="token_blacklist"),
+    path("refresh", RefreshTokenView.as_view(), name="token_refresh"),
+    path("logout", TokenBlacklistView.as_view(), name="token_blacklist"),
     path(
         "signup/",
         CreateProfileViewSet.as_view(
