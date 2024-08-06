@@ -20,6 +20,7 @@ class DataRequest(TimeStampedModel):
     geography = models.ManyToManyField("core.Country", related_name="request_country")
     budget = models.CharField(max_length=10)
     detail = models.TextField()
+    user = models.ForeignKey("users.User", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

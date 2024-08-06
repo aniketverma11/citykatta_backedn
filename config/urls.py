@@ -19,6 +19,7 @@ urlpatterns = [
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
+    path(r"api/v1/core/", include("datahub_backend.core.urls", namespace="core")),
     # User management
     path("api/v1/users/", include("datahub_backend.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
