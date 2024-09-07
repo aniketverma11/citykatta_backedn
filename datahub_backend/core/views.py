@@ -17,3 +17,9 @@ class DataRequestCreateAPIView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save()
+
+
+class ContactUsCreateAPIView(generics.CreateAPIView):
+    permission_classes = [permissions.AllowAny]
+    queryset = models.ContactUs.objects.all()
+    serializer_class = serializer.ContactUsCreateSerializer

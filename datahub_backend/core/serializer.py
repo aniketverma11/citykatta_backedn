@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from rest_framework.exceptions import ValidationError
 
-from datahub_backend.core.models import Country, DataRequest
+from datahub_backend.core.models import Country, DataRequest, ContactUs
 
 User = get_user_model()
 
@@ -40,3 +40,9 @@ class DataRequestSerializer(serializers.ModelSerializer):
         user_object = User.objects.get(username=user)
         if user_object:
             raise ValidationError({"data": "User is already registered."})
+
+
+class ContactUsCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactUs
+        fields = "__all__"
