@@ -22,13 +22,15 @@ class DataRequestSerializer(serializers.ModelSerializer):
         exclude = ["user"]
 
     def create(self, validated_data):
-        username = validated_data.pop("username")
-        password = validated_data.pop("password")
-
+        if self.request.user:
+            username = validated_data.pop("username")
+            password = validated_data.pop("password")
+            user = User.objects.create_user(username=username, password=password)
+        else:
+            user = self.request.user
+        data_request = DataRequest.objects.create(user=user, **validated_data)
         category = validated_data.pop("category")
         geography = validated_data.pop("geography")
-        user = User.objects.create_user(username=username, password=password)
-        data_request = DataRequest.objects.create(user=user, **validated_data)
         data_request.category.set(category)
         data_request.geography.set(geography)
         return data_request

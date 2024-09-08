@@ -13,7 +13,7 @@ class CountryListAPIView(generics.ListAPIView):
 class DataRequestCreateAPIView(generics.CreateAPIView):
     queryset = models.DataRequest.objects.all()
     serializer_class = serializer.DataRequestSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny, permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save()
